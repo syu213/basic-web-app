@@ -1,20 +1,17 @@
-name: __BLANK 1__
+name: CI
 
 on:
-
-push:
-
-branches:
-
-- main
+  push:
+    branches:
+      - main
 
 jobs:
 
-__BLANK 2__:
+build:
 
     runs-on: ubuntu-latest
 
-    name: __BLANK 3__
+    name: Build and test
 
     steps:
 
