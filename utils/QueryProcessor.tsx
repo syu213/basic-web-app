@@ -35,31 +35,17 @@ export default function QueryProcessor(query: string): string {
   }
 
   if (query.toLowerCase().includes("largest")) {
-    // Find the index of the colon, which separates the question from the number list.
     const colonIndex = query.indexOf(':');
-
-    // Check if a colon was found and the list isn't empty after it.
     if (colonIndex !== -1 && colonIndex < query.length - 1) {
-      // Extract the string containing the numbers (e.g., " 44, 43, 8?").
       const numbersString = query.substring(colonIndex + 1).trim().replace('?', '');
-
-      // Split the string by comma, convert each part to an integer, 
-      // and remove any results that aren't valid numbers (NaN).
       const numbers = numbersString.split(',')
         .map(s => parseInt(s.trim()))
         .filter(n => !isNaN(n));
-
-      // If we successfully extracted numbers, find the largest one.
       if (numbers.length > 0) {
-        // Math.max can find the largest number in an array using the spread operator (...).
         const largest = Math.max(...numbers);
-        
-        // Return the result as a string, as required by the function signature.
         return largest.toString();
       }
     }
-    
-    // Return an empty string or handle the error if no numbers were found.
     return "";
   }
 
